@@ -26,13 +26,13 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="py-20 px-4 bg-slate-50 min-h-screen">
+    <div className="py-20 px-4 min-h-screen">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">
+          <h1 className="text-4xl font-bold mb-4">
             Book an Appointment
           </h1>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-blue-100">
             Schedule your visit with us - we're here to help with all your eye
             care needs
           </p>

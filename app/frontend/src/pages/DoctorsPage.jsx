@@ -1,6 +1,8 @@
 import React from "react";
 import { DoctorCard } from "../components/doctors/DoctorCard";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 const doctors = [
   {
@@ -50,28 +52,56 @@ export default function DoctorsPage() {
   };
 
   return (
-    <div className="py-20 px-4 bg-slate-50 min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
+      {/* Hero Section */}
+      <section className="bg-linear-to-br from-teal-600 via-cyan-600 to-teal-600 text-white py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span className="text-sm font-medium">Expert Team</span>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Meet Our Expert Team
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-xl text-teal-100 max-w-2xl mx-auto">
             Our board-certified ophthalmologists and optometrists are dedicated
             to providing exceptional eye care
           </p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {doctors.map((doctor) => (
-            <DoctorCard
-              key={doctor.id}
-              doctor={doctor}
-              onBookAppointment={handleBookAppointment}
-            />
-          ))}
+      {/* Doctors Grid */}
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {doctors.map((doctor) => (
+              <DoctorCard
+                key={doctor.id}
+                doctor={doctor}
+                onBookAppointment={handleBookAppointment}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-linear-to-br from-teal-600 via-cyan-600 to-teal-600 text-white py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">
+            Ready to Schedule Your Appointment?
+          </h2>
+          <p className="text-xl text-teal-100 mb-8">
+            Choose from our expert team and book your consultation today
+          </p>
+          <button
+            onClick={() => navigate("/book-appointment")}
+            className="bg-white text-teal-600 hover:bg-teal-50 px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-colors duration-200"
+          >
+            Book Appointment
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
