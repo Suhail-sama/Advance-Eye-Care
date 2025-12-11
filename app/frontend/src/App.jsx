@@ -10,8 +10,10 @@ import DoctorsPage from "./pages/DoctorsPage";
 import BookingPage from "./pages/BookingPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import Gallary from "./pages/Gallary";  
-
+import BlogPage from "./pages/BlogPage";
+import VisionTestPage from "./pages/VisionTestPage";
+import InsurancePage from "./pages/InsurancePage";
+import GalleryPage from "./pages/GalleryPage";
 
 const queryClient = new QueryClient();
 
@@ -28,9 +30,12 @@ function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/doctors" element={<DoctorsPage />} />
+                <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/book-appointment" element={<BookingPage />} />
                 <Route path="/contact" element={<ContactPage />} />
-                <Route path="/gallary"  element={<Gallary/>} />
+                <Route path="/blogs" element={<BlogPage />} />
+                <Route path="/vision-test" element={<VisionTestPage />} />
+                <Route path="/insurance" element={<InsurancePage />} />
               </Routes>
             </main>
             <Footer />

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 
 function ElegantShape({
   className,
@@ -9,7 +10,10 @@ function ElegantShape({
   height = 100,
   rotate = 0,
   gradient = "from-white/[0.08]",
+  gradientDark = "from-white/[0.08]",
 }) {
+  const { theme } = useTheme();
+
   return (
     <motion.div
       initial={{
@@ -49,11 +53,18 @@ function ElegantShape({
           className={cn(
             "absolute inset-0 rounded-full",
             "bg-linear-to-r to-transparent",
-            gradient,
-            "backdrop-blur-[2px] border-2 border-white/15",
-            "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
+            theme === "dark" ? gradientDark : gradient,
+            "backdrop-blur-[2px]",
+            theme === "dark"
+              ? "border-2 border-white/15"
+              : "border-2 border-teal-200/40",
+            theme === "dark"
+              ? "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]"
+              : "shadow-[0_8px_32px_0_rgba(20,184,166,0.15)]",
             "after:absolute after:inset-0 after:rounded-full",
-            "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
+            theme === "dark"
+              ? "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
+              : "after:bg-[radial-gradient(circle_at_50%_50%,rgba(20,184,166,0.3),transparent_70%)]"
           )}
         />
       </motion.div>
@@ -68,6 +79,8 @@ function HeroGeometric({
   description = "Crafting exceptional digital experiences through innovative design and cutting-edge technology.",
   children,
 }) {
+  const { theme } = useTheme();
+
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -82,8 +95,22 @@ function HeroGeometric({
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-linear-to-br from-slate-950 via-teal-950 to-slate-950">
-      <div className="absolute inset-0 bg-linear-to-br from-teal-500/8 via-transparent to-cyan-500/8 blur-3xl" />
+    <div
+      className={cn(
+        "relative min-h-screen w-full flex items-center justify-center overflow-hidden",
+        theme === "dark"
+          ? "bg-linear-to-br from-slate-950 via-teal-950 to-slate-950"
+          : "bg-linear-to-br from-teal-50 via-cyan-50 to-teal-50"
+      )}
+    >
+      <div
+        className={cn(
+          "absolute inset-0",
+          theme === "dark"
+            ? "bg-linear-to-br from-teal-500/8 via-transparent to-cyan-500/8 blur-3xl"
+            : "bg-linear-to-br from-teal-400/15 via-transparent to-cyan-400/15 blur-3xl"
+        )}
+      />
 
       <div className="absolute inset-0 overflow-hidden">
         <ElegantShape
@@ -91,7 +118,8 @@ function HeroGeometric({
           width={600}
           height={140}
           rotate={12}
-          gradient="from-teal-500/[0.2]"
+          gradient="from-teal-400/[0.25]"
+          gradientDark="from-teal-500/[0.2]"
           className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
         />
 
@@ -100,7 +128,8 @@ function HeroGeometric({
           width={500}
           height={120}
           rotate={-15}
-          gradient="from-cyan-500/[0.2]"
+          gradient="from-cyan-400/[0.25]"
+          gradientDark="from-cyan-500/[0.2]"
           className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
         />
 
@@ -109,7 +138,8 @@ function HeroGeometric({
           width={300}
           height={80}
           rotate={-8}
-          gradient="from-teal-400/[0.18]"
+          gradient="from-teal-500/[0.22]"
+          gradientDark="from-teal-400/[0.18]"
           className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
         />
 
@@ -118,7 +148,8 @@ function HeroGeometric({
           width={200}
           height={60}
           rotate={20}
-          gradient="from-cyan-400/[0.18]"
+          gradient="from-cyan-500/[0.22]"
+          gradientDark="from-cyan-400/[0.18]"
           className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
         />
 
@@ -127,7 +158,8 @@ function HeroGeometric({
           width={150}
           height={40}
           rotate={-25}
-          gradient="from-teal-300/[0.15]"
+          gradient="from-teal-600/[0.2]"
+          gradientDark="from-teal-300/[0.15]"
           className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
         />
       </div>
@@ -139,10 +171,27 @@ function HeroGeometric({
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/12 mb-8 md:mb-12 backdrop-blur-sm"
+            className={cn(
+              "inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm mb-8 md:mb-12",
+              theme === "dark"
+                ? "bg-white/5 border border-white/12"
+                : "bg-white/60 border border-teal-200/60 shadow-lg shadow-teal-500/10"
+            )}
           >
-            <Circle className="h-2 w-2 fill-teal-400 text-teal-400" />
-            <span className="text-sm text-white/70 tracking-wide font-medium">
+            <Circle
+              className={cn(
+                "h-2 w-2",
+                theme === "dark"
+                  ? "fill-teal-400 text-teal-400"
+                  : "fill-teal-600 text-teal-600"
+              )}
+            />
+            <span
+              className={cn(
+                "text-sm font-medium tracking-wide",
+                theme === "dark" ? "text-white/70" : "text-teal-900"
+              )}
+            >
               {badge}
             </span>
           </motion.div>
@@ -154,11 +203,25 @@ function HeroGeometric({
             animate="visible"
           >
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-              <span className="bg-clip-text text-transparent bg-linear-to-b from-white to-white/90">
+              <span
+                className={cn(
+                  "bg-clip-text text-transparent",
+                  theme === "dark"
+                    ? "bg-linear-to-b from-white to-white/90"
+                    : "bg-linear-to-b from-slate-900 to-slate-700"
+                )}
+              >
                 {title1}
               </span>
               <br />
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-teal-300 via-cyan-200 to-teal-300">
+              <span
+                className={cn(
+                  "bg-clip-text text-transparent",
+                  theme === "dark"
+                    ? "bg-linear-to-r from-teal-300 via-cyan-200 to-teal-300"
+                    : "bg-linear-to-r from-teal-600 via-cyan-600 to-teal-600"
+                )}
+              >
                 {title2}
               </span>
             </h1>
@@ -170,7 +233,12 @@ function HeroGeometric({
             initial="hidden"
             animate="visible"
           >
-            <p className="text-base sm:text-lg md:text-xl text-white/50 mb-10 leading-relaxed font-light tracking-wide max-w-2xl mx-auto px-4">
+            <p
+              className={cn(
+                "text-base sm:text-lg md:text-xl mb-10 leading-relaxed font-light tracking-wide max-w-2xl mx-auto px-4",
+                theme === "dark" ? "text-white/50" : "text-slate-600"
+              )}
+            >
               {description}
             </p>
           </motion.div>
@@ -189,7 +257,14 @@ function HeroGeometric({
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-slate-950/80 pointer-events-none" />
+      <div
+        className={cn(
+          "absolute inset-0 pointer-events-none",
+          theme === "dark"
+            ? "bg-linear-to-t from-slate-950 via-transparent to-slate-950/80"
+            : "bg-linear-to-t from-teal-50 via-transparent to-teal-50/80"
+        )}
+      />
     </div>
   );
 }

@@ -68,6 +68,30 @@ export function Footer() {
                   Book Appointment
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/blog"
+                  className="hover:text-teal-400 transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/insurance"
+                  className="hover:text-teal-400 transition-colors"
+                >
+                  Insurance
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/vision-test"
+                  className="hover:text-teal-400 transition-colors"
+                >
+                  Vision Test
+                </Link>
+              </li>
             </ul>
           </div>
 

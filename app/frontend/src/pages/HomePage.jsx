@@ -1,7 +1,10 @@
 import React from "react";
 import { HeroSection } from "../components/home/HeroSection";
 import { ServicesSection } from "../components/home/ServicesSection";
+import GalleryPage from "./GalleryPage";
 import { TestimonialsSection } from "../components/home/TestimonialsSection";
+import { ReviewsSection } from "../components/home/ReviewsSection";
+import { FAQSection } from "../components/home/FAQSection";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +17,9 @@ export default function HomePage() {
     <div className="overflow-hidden">
       <HeroSection />
       <ServicesSection />
-      <TestimonialsSection />
+      <GalleryPage />
+      <ReviewsSection />
+      <FAQSection />
 
       {/* Final CTA Section */}
       <section className="relative py-24 px-4 bg-linear-to-br from-teal-600 via-cyan-600 to-teal-600 overflow-hidden">
@@ -40,16 +45,16 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-white text-teal-600 hover:bg-slate-100 px-10 py-7 text-lg rounded-full shadow-2xl hover:scale-105 transition-all duration-300 group"
+              className="bg-white text-teal-600 hover:bg-slate-100 px-10 py-7 text-lg rounded-full shadow-2xl transition-all duration-300"
               onClick={() => navigate("/book-appointment")}
             >
               <Calendar className="mr-2 h-6 w-6" />
               Book Your Appointment
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
               size="lg"
-              className="border-2 border-white text-white bg-white/10 backdrop-blur-md hover:bg-white/20 px-10 py-7 text-lg rounded-full hover:scale-105 transition-all duration-300"
+              className="border-2 border-white text-white bg-white/10 backdrop-blur-md hover:bg-white/20 px-10 py-7 text-lg rounded-full transition-all duration-300"
               onClick={() => navigate("/contact")}
             >
               Contact Us
