@@ -10,6 +10,8 @@ import DoctorsPage from "./pages/DoctorsPage";
 import BookingPage from "./pages/BookingPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import Gallary from "./pages/Gallary";  
+
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,7 @@ function App() {
                 <Route path="/doctors" element={<DoctorsPage />} />
                 <Route path="/book-appointment" element={<BookingPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/gallary"  element={<Gallary/>} />
               </Routes>
             </main>
             <Footer />
